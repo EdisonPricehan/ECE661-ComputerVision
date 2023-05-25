@@ -1,0 +1,263 @@
+
+     README for the Examples Directory of the Watershed Distribution
+     ---------------------------------------------------------------
+
+
+
+                  DEMONSTRATING DILATE-ERODE OPERATIONS
+
+
+
+This directory illustrates the different ways in which you can use this
+module.  If you just want to play with dilate-erode methods of the module,
+execute the script
+
+    dilate_erode.py
+
+This script assumes a disk structuring element whose radius in pixels is
+supplied as the first argument to the methods 'dilate()' and 'erode()'.
+The second argument lets you choose between a "square" and a "circular"
+structuring element. As currently programmed, this script produces results
+on a binary image called "triangle1.jpg".  You can change the filename
+supplied through the constructor parameter 'data_image' to compute the
+dilations and erosions for any binary image of your choice.  To demonstrate
+the usefulness of these operations for "repairing" breaks in edges, execute
+the script
+
+    edge_repair.py
+
+See the comment block at the beginning of the above script as to when
+dilation followed by erosion can be expected to repair breaks in shape
+boundaries.
+
+===============================================================================              
+
+                      DEMONSTRATING DISTANCE MAPPING
+
+
+If you want to play with the distance mapping code in the module, execute
+the script:            
+
+    distance_mapping.py
+
+This script will ask you to place a mark with a mouse click in one of the
+blobs in your binary image.  Subsequently, it presents a distance map of
+the blob with respect to that mark.  For a demonstration that involves more
+complex blobs --- these being blobs with holes in them --- execute the
+script
+
+    distance_mapping2.py
+
+
+
+===============================================================================              
+
+                   INFLUENCE ZONE CALCULATION DEMONSTRATION
+
+
+For a demonstration of the calculation of the influence zones (IZ) in a
+binary blob, execute the script
+
+    influence_zones.py
+
+For a visually interesting demonstration, you must place at least two marks
+inside a blob.  Each mark is dilated into its IZ and the boundaries between
+the IZs constitute the geodesic skeleton of the binary blob.
+
+===============================================================================              
+
+                 CALCULATING THE LoG OF A GRAYSCALE IMAGE
+
+All of the scripts mentioned above run on binary image files.  As a first
+demonstration involving grayscale or color images, execute the script
+
+    LoG.py
+
+that calculates the Laplacian-of-Gaussian of an image.  The LoG is
+calculated by taking a difference of two Gaussian-smoothed images with
+two different values of sigma.  The first Gaussian smoothed image is
+calculated with the sigma as set in the constructor and the second with
+a sigma that 20% larger.
+
+===============================================================================              
+
+              AUTOMATIC SEGMENTATION WITH THE WATERSHED MODULE
+
+
+To see an automatic watershed segmentation that does NOT involve any user
+interaction, execute the script:
+
+        segment_automatic_and_show_watershed.py
+
+As you will notice, when there is no help from the user, the watershed
+algorithm over-segments the image.  For an example of the segmentation
+produced by this script, for the following image
+
+        orchid0001.jpg
+
+of an orchid, the script produced the segmentation shown in
+
+        automatic_output_segmentation_for_orchid.jpg
+
+To see the individual blobs extracted from your input image through the
+watershed contours, execute the following script:
+
+        segment_automatic_and_use_contours_to_extract_blobs.py
+
+This script finds the blobs by using the logic that a pixel belongs to the
+region bounded by a contour if a line through the pixel intersects the
+contour an even number of times. For a totally different approach to blob
+extraction, you may wish to try the script:
+
+        segment_automatic_and_use_region_growing_to_extract_blobs.py
+
+This script uses region-growing logic to pull out the individual blobs.
+
+
+===============================================================================              
+
+                    MARKER-ASSISTED WATERSHED SEGMENTATION
+
+
+That brings us to marker based watershed segmentation in which a user is asked to
+place marker points in an image in order to manually modify the gradient map. To see
+how this works, execute the script:
+
+        segment_with_markers_and_show_watershed.py
+
+In order to interact with the module for this segmentation exercise, pay careful
+attention to the titles of the image frames that are displayed.  When it asks you to
+click on the "save" and then "exit" buttons that appear at the bottom of the image
+window, you must do exactly do that (as opposed to just closing the window).  To see
+all the markers I placed in the image in one of my own attempts at segmenting the
+orchid image, view the image file:
+
+        composite_image_with_all_marks_orchid.jpg
+
+The watersheds produced by this marker-assisted segmentation can be seen in the
+output image:
+
+        marker_assisted_segmentation_for_orchid.jpg
+
+To see the individual blobs extracted for the case of marker-based watershed
+segmentation, execute the following script:
+
+        segment_with_markers_and_use_contours_to_extract_blobs.py
+
+As for the "automatic" version of this script, this script finds the blobs by using
+the logic that a pixel belongs to the region bounded by a contour if a line through
+the pixel intersects the contour an even number of times. For a totally different
+approach to blob extraction, you may wish to try the script:
+
+        segment_with_markers_and_use_region_growing_to_extract_blobs.py
+
+This script uses region-growing logic to pull out the individual blobs.
+
+
+===============================================================================
+
+       APPLYING WATERSHED SEGMENTATION TO JUST A PORTION OF THE IMAGE
+
+
+The script in the Examples directory:
+
+        extract_image_portion_and_apply_color_filter_demo.py
+
+illustrates the methods you can invoke to specify just a portion of the image that
+should be subject to watershed segmentation.  There are two different methods that
+you can call on in order to specify the image portion that you want segmented:
+
+   1) You can click at a point and then drag the mouse to define a rectangular
+      portion of the image;
+
+   2) You can specify any polygonal shaped area by clicking the mouse at the
+      vertices of the polygon you have in mind.
+
+The first of these is provided by the method:
+
+        extract_image_region_interactively_by_dragging_mouse()
+
+and the second by
+
+        extract_image_region_interactively_through_mouse_clicks()
+
+
+===============================================================================
+
+         APPLYING A COLOR FILTER TO THE IMAGE PRIOR TO SEGMENTATION
+
+
+The script
+
+        extract_image_portion_and_apply_color_filter_demo.py
+             
+also illustrates how to apply a color filter to an image before it is subject to
+watershed segmentation. The module gives you two different methods for applying a
+color filter: You can apply a filter to the HSV representation of the color, or its
+RGB representation.  The methods for applying these color filters are:
+
+             apply_color_filter_hsv()
+
+             apply_color_filter_rgb()
+
+For both these methods, you have two choices for specifying a filter: as a triple of
+scalars or as a triple of pairs.  The filter must be specified either as a triple of
+scalars, as in "(1,0.5,0.8)", or a triple of pairs, as in "((0,35),(0,255),(0,255))".
+When specified as a triple of scalars, each color component is multiplied by the
+corresponding scalar.  And when specified as a triple of pairs, each color component
+must be within the range dictated by the corresponding pair. With HSV, you are more
+likely to use the second form of the filter.  For example, the filter
+"((0,35),(0,255),(0,255))" works well if you want to let through only the red and
+reddish pixels.  And, with RGB, you are more likely to use the first form of the
+filter.  For example, if you wanted to apply the watershed segmentation to just the R
+component of a color image, your filter would be "(1,0,0)".
+
+
+===============================================================================
+
+                APPLYING OTSU THRESHOLD TO THE HUE COMPONENT
+
+
+For some problem domains, you can obtain useful foreground/background
+separation by first applying a hue filter to a color image. This is
+demonstrated by the following script.  The goal here is to separate the
+"fruitlets" from the rest of the foliage on an apple tree.
+
+    otsu_threshold_hue_demo.py
+
+===============================================================================
+
+             HISTOGRAM EQUALIZING AN IMAGE PRIOR TO SEGMENTATION
+
+If your input image is generally too dark or generally too bright, it might
+be a good idea to first histogram equalize it.  When this functionality is
+invoked, the histogram equalization is applied to the 'v' component of the
+HSV representation of an image.  The following script demonstrates
+histogram equalization:
+
+    hist_equalize_demo.py
+
+===============================================================================
+
+                        CREATING YOUR OWN BINARY IMAGES
+
+
+Finally, if you want to create your own binary images for some of the scripts
+mentioned above, execute the script
+
+    data_gen.py
+
+
+===============================================================================
+
+                              DIRECTORY CLEANUP
+
+Do not forget to execute the script
+
+        cleanup.py
+
+in the Examples directory after running the scripts mentioned above to cleanup the
+intermediate images created by the scripts.  Ordinarily, the destructor of the class
+would take care of such cleanup.  But depending on how you exit the module, that may
+not always happen.
+

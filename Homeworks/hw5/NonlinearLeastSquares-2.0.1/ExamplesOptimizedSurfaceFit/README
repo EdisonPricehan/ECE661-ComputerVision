@@ -1,0 +1,68 @@
+                              README
+
+
+
+    This directory contains examples of how you can use the
+    NonlinearLeastSquares class for solving optimization problems.  These
+    examples are based on the domain specific class OptimizeSurfaceFit that
+    knows about fitting model surfaces to noisy height data over a flat
+    plane.  You will see the following four scripts in this directory:
+
+        leven_marq.py
+
+        grad_descent.py    
+
+        leven_marq_with_partial_derivatives.py
+
+        grad_descent_with_partial_derivatives.py
+
+    For the first two scripts, the NonlinearLeastSquares instance used will
+    estimate the needed Jacobian matrix through appropriate numerical
+    approximation formulas applied to the elements of the Fvec vector.  On
+    the other hand, for the third and the fourth scripts, your own
+    domain-specific class must construct the Jacobian matrix, in the form
+    of an array of functions. In the case of the domain-specific class
+    OptimizedSurfaceFit that comes with this module, this Jacobian matrix is
+    constructed from the user-supplied partial derivatives for the model
+    functional.
+
+    In order to become familiar with the NonlinearLeastSquares class, you
+    might wish to play with the four scripts listed above by:
+
+    -- Trying different functional forms for the 'datagen_functional' for
+       different shaped surfaces.
+
+       When you change the algebraic form of 'datagen_functional' for the
+       OptimizedSurfaceFit class, make sure that you also change the
+       algebraic form supplied for 'model_functional'.  Note that nonlinear
+       least-squares can only calculate the parameters of a model
+       functional that best fit the noisy height data; it cannot conjure up
+       a new mathematical form for the surface.  So the basic mathematical
+       form of the 'model_functional' must be the same as that of the
+       'datagen_functional'.
+
+    -- Trying different degrees of noise.  
+
+       As mentioned elsewhere, when you supply a numerical value for the
+       constructor option 'how_much_noise_for_synthetic_data' for the
+       OptimizedSurfaceFit class, the number you enter should be in
+       proportion to the largest numerical coefficient in the 'datagen'
+       functional.  Change this numerical value and see what happens to the
+       quality of the final results.
+
+    -- Try different values for the initial values of the model parameters.
+
+       Since, depending on where the search for the optimum solution is
+       started, all nonlinear least-squares methods can get trapped in a
+       local minimum, see what happens when you change these initial
+       values.
+
+    -- Try different algebraic expressions for the 'model_functional'
+       constructor option for the OptimizedSurfaceFit class.  But note that
+       if you change the algebraic form of this functional, you must also
+       change the algebraic form of the 'datagen_functional' option.
+
+    -- Try running the example with and without the partial derivatives
+       that are supplied through the 'partials_for_jacobian' option for the
+       OptimizedSurfaceFit class.
+

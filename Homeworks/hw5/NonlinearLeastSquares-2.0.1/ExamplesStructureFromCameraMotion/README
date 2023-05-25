@@ -1,0 +1,47 @@
+                              README
+
+
+    This directory contains the following three scripts that show how you
+    can use the NonlinearLeastSquares class for solving the
+    scene-structure-from- camera-motion problem:
+
+        sfm_with_calibrated_cameras_translations_only.py
+
+        sfm_with_uncalibrated_cameras_translations_only.py
+
+        bundle_adjust_sfm_with_uncalibrated_cameras_translations_only.py
+
+    where the string "sfm" stands for "structure from motion".
+
+    The first script listed above is for estimating the scene structure
+    with a calibrated camera in motion.  As you play with this method, make
+    sure you change the level of noise in the initial values supplied for
+    the structure parameters to be estimated.  As you will see, the method
+    works even when the initial values for the parameters are far from
+    their true values.  Note that the ProjectiveCamera class makes it easy
+    to specify calibrated cameras.  The constructor of the class first
+    gives you a camera for which you can specify the internal and the
+    external parameters through the constructor options. Subsequently, you
+    can apply translational and rotational transformations to the camera to
+    move it to different locations in world 3D.  Since the 3x4 camera
+    matrices for all these positions of the camera are known, you end up
+    with a set of fully calibrated cameras for experimenting with
+    structure-from-motion simulations.
+
+    The second and the third scripts listed above are for the case of
+    uncalibrated cameras, with the former a straightforward application of
+    the Levenberg-Marquardt algorithm and the latter a bundle-adjustment
+    variant of the same.  Logically, both these methods must return
+    identical answers.  (If you encounter a case when the two do not return
+    the same answer, please send a bug report to me. I'd appreciate that
+    very much.)
+
+    Just to give you an idea of the speed-up you will get with
+    bundle-adjustment, when I run the second script listed above on my
+    laptop, it takes about 15 minutes for the number of structure points
+    and the number of camera positions used in that script.  For exactly
+    the same number of structure points and the camera positions, the third
+    script takes only a couple of minutes.  You can only imagine the
+    speed-up you will get with a C-based library for bundle adjustment ---
+    such as the "sba" library mentioned in the paper by Lourakis and
+    Argyros that I mentioned earlier in this documentation page.

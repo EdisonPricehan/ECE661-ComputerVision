@@ -1,0 +1,23 @@
+
+README:
+
+In the form of a class named NonlinearLeastSquares, this
+module provides a domain agnostic implementation of
+nonlinear least-squares algorithms (gradient-descent and
+Levenberg-Marquardt) for fitting a model to observed data.
+Typically, the model involves several parameters and each
+observed data element can be expressed as a function of
+those parameters plus noise.  The goal of nonlinear
+least-squares is to estimate the best values for the
+parameters involved given all of the observed data.  In
+order to illustrate how to use the NonlinearLeastSquares
+class, the module also comes with two additional classes:
+OptimizedSurfaceFit, whose job is to fit the best surface to
+noisy height data over an XY-plane, and ProjectiveCamera,
+whose job is help you construct the structure of a 3D scene
+from the camera images recorded by a moving camera.
+
+If there are any questions about this module, contact the
+author at 'kak@purdue.edu' with the string
+NonlinearLeastSquares in the subject line to get past his
+spam filter.

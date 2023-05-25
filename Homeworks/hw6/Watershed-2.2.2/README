@@ -1,0 +1,22 @@
+This module is a Python implementation of the watershed
+algorithm for image segmentation.  The goal of this module
+is not to compete with the popular OpenCV implementation of
+the watershed algorithm.  On the other hand, the goal here
+is to provide an alternative framework that is more amenable
+to experimentation with the logic of watershed segmentation.
+
+The best way to become familiar with this module is to spend
+some time with the scripts in the Examples directory.  In 
+particular, the following script
+
+    WatershedSegmentationWith_no_Marks.py
+
+provides a watershed segmentation with NO user-supplied markings
+on the image.  And the script
+
+    WatershedSegmentationWithMarks.py
+
+first elicits from the user a set of marks on the image to
+delineate the regions where the image gradients can be
+modified and then carries out a watershed segmentation of
+the image.

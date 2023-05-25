@@ -1,0 +1,73 @@
+
+
+             README for ExamplesImageScanner Directory
+             *****************************************
+
+
+This directory contains the following scripts:
+
+
+1)  RunImageScanner.py
+
+           Given a new camera image in which you want to detect small objects,
+           the first thing you must do is to run this script (or the next script) 
+           to divide the large image into smaller subimages.
+
+           This scripts deposits all the subimages in a directory whose pathname
+           you specify in the call to the ImageScanner constructor.    
+
+           This script is non-interactive --- in the sense that it does not let
+           you visually examine each subimage before it is written out to the 
+           dump directory.
+
+
+2)  RunImageScannerInteractive.py
+
+           This is the interactive version of the previous script.  Before a
+           subimage is written out to the dump directory, you can examine it 
+           visually for as long as you want in order to "understand" your 
+           data for the presence or the absence of small objects.  
+
+           Note that we are talking about objects that may be so small that
+           they may not be clearly visible in the original image if shown
+           in the small screen of a typical laptop.
+
+           It is easier to such objects in the subimages since they are shown
+           at a scale that is much larger than how they appear in the overall
+           original image.
+
+3)  AnalyzeSingleSubimage.py
+
+           After you have created a scanner dump directory of subimages using
+           either of the previous two scripts, you can call this script to 
+           debug your object detection logic on a single subimage from that
+           directory.
+
+           The object detection results produced from a specified subimage
+           are shown in the original image to give you a good sense of
+           where in the original image you are looking and what the object
+           detections look like there.
+
+
+4)  AnalyzeSingleSubimageShowIntermediateResults.py 
+
+           This script does the same thing as the previous script, except
+           that it also shows the intermediate results in the processing of
+           the designated subimages.  These intermediate results refer to the
+           result of color filtering, binarizing of the data, the output 
+           of the connected components operations, etc.
+           
+
+5)  AnalyzeScannerDump.py
+
+           Assuming you have perfected your object detection logic, after you
+           have created a subimage dump directory with either of the first two
+           scripts mentioned above, you can call this script to process ALL
+           of the subimages in the dump directory for object detection.
+
+
+6)  AnalyzeScannerDumpShowIntermediateResults.py
+          
+           This is an automated version of the previous script.
+
+           
